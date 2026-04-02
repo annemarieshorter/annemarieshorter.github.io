@@ -5,69 +5,108 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
   color: #222;
   background: #faf8f4;
+  line-height: 1.6;
 }
 
-.container {
-  width: min(1000px, 92%);
-  margin: 0 auto;
-}
-
-.hero {
-  padding: 4rem 0 3rem;
-  background: #d8e7d0;
-  text-align: center;
-}
-
-.hero h1 {
-  margin: 0;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-}
-
-.tagline {
-  margin-top: 0.75rem;
-  font-size: 1.1rem;
-}
-
-section {
-  padding: 2rem 0;
-}
-
-h2 {
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-}
-
-.card {
-  background: white;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  margin: 0;
-}
-
-.card img {
+.hero-image {
+  position: relative;
   width: 100%;
-  height: 260px;
+  height: 60vh;
+  min-height: 360px;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.card figcaption {
-  padding: 0.9rem 1rem 1rem;
+.hero-text {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 90%);
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.hero-text h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.hero-text p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.container {
+  width: min(900px, 92%);
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.about,
+.troupe-photo,
+.upcoming-show {
+  margin-bottom: 3rem;
+}
+
+.about h2,
+.troupe-photo h2,
+.upcoming-show h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.upcoming-show {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.show-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.85rem 1.2rem;
+  background: #222;
+  color: white;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.show-button:hover {
+  opacity: 0.9;
+}
+
+.stage-photo {
+  margin: 0;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.stage-photo img {
+  width: 100%;
+  display: block;
+}
+
+.stage-photo figcaption {
+  padding: 1rem;
   font-size: 0.95rem;
+  color: #555;
 }
 
 .footer {
-  padding: 2rem 0;
   text-align: center;
+  padding: 2rem 1rem 3rem;
   color: #666;
 }
