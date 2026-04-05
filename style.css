@@ -93,13 +93,38 @@ body {
   margin-top: 0;
 }
 
-.upcoming-show p {
-  margin-bottom: 0;
+.upcoming-show h2 {
+  margin-bottom: 1rem;
+}
+
+/* Upcoming shows */
+.show-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.show-item {
+  padding: 1.15rem 1.2rem;
+  border: 1px solid #ece7df;
+  border-radius: 16px;
+  background: #fcfbf8;
+}
+
+.show-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.12rem;
+}
+
+.show-details {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .show-button {
   display: inline-block;
-  margin-top: 1.25rem;
+  margin-top: 0.25rem;
   padding: 0.95rem 1.35rem;
   background: var(--accent);
   color: #ffffff;
@@ -130,35 +155,6 @@ body {
   color: var(--muted);
 }
 
-.footer {
-  text-align: center;
-  padding: 0 1rem 2.5rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-@media (max-width: 700px) {
-  .site-header {
-    padding: 1rem 1rem 0.5rem;
-  }
-
-  .header-image-wrap {
-    height: 180px;
-    border-radius: 18px;
-  }
-
-  .header-content {
-    padding-top: 1.25rem;
-  }
-
-  .intro {
-    font-size: 1rem;
-  }
-
-  .card {
-    padding: 1.35rem;
-  }
-}
 .contact-card {
   text-align: center;
 }
@@ -183,4 +179,45 @@ body {
 .agent-email:hover {
   opacity: 0.8;
   border-color: var(--accent);
+}
+
+.footer {
+  text-align: center;
+  padding: 0 1rem 2.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 720px) {
+  .show-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  .header-image-wrap {
+    height: 180px;
+    border-radius: 18px;
+  }
+
+  .header-content {
+    padding-top: 1.25rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 1.35rem;
+  }
+
+  .show-button {
+    width: 100%;
+    text-align: center;
+  }
 }
