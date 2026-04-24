@@ -12,11 +12,12 @@
     <div class="header-image-wrap">
       <img src="images/genovia_drone.png" alt="Mooth Terry header banner" class="header-image" />
     </div>
+
     <div class="header-content">
       <p class="eyebrow">Say hello to improv troupe</p>
       <h1>Mooth Terry</h1>
       <p class="intro">
-        A silly little group of people making up strange characters and doing the occassional walk off.
+        A silly little group of people making up strange characters and doing the occasional walk off.
       </p>
     </div>
   </header>
@@ -24,54 +25,52 @@
   <main class="container">
     <section class="card about">
       <h2>About Us</h2>
-      <p>
-        Please enjoy this haiku:
-        
-      </p>
-      <p>
+      <p>Please enjoy this haiku:</p>
+
+      <div class="haiku">
         <p>Tag out, sweep edit</p>
         <p>Yes, and builds a strange new world</p>
         <p>Bell ring. Lights out. Laugh.</p>
-      </p>
-     </section>
+      </div>
+    </section>
 
     <section class="card upcoming-show">
-  <h2>Upcoming Shows</h2>
+      <h2>Upcoming Shows</h2>
 
-  <div class="show-list">
-    <div class="show-item">
-      <p class="show-title"><strong>Beginner’s Luck</strong></p>
-      <p class="show-details">
-        Thursday, April 23 at 7:30 PM<br />
-        Go Comedy! Improv Theater, Ferndale
-      </p>
-      <a
-        class="show-button"
-        href="https://www.gocomedy.net/calendar/xzbeglc3s4gbzh2-p9df3-clhsp-48jmk"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        See April 23rd show details
-      </a>
-    </div>
+      <div class="show-list">
+        <div class="show-item">
+          <p class="show-title"><strong>Beginner’s Luck</strong></p>
+          <p class="show-details">
+            Thursday, April 23 at 7:30 PM<br />
+            Go Comedy! Improv Theater, Ferndale
+          </p>
+          <a
+            class="show-button"
+            href="https://www.gocomedy.net/calendar/xzbeglc3s4gbzh2-p9df3-clhsp-48jmk"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            See April 23rd show details
+          </a>
+        </div>
 
-    <div class="show-item">
-      <p class="show-title"><strong>Class Show Bravo</strong></p>
-      <p class="show-details">
-        Monday, April 27 at 8:30 PM<br />
-        Go Comedy! Improv Theater, Ferndale
-      </p>
-      <a
-        class="show-button"
-        href="https://app.gopassage.com/events/class-show-bravo/event_times/1781429"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        See April 27th show details
-      </a>
-    </div>
-  </div>
-</section>
+        <div class="show-item">
+          <p class="show-title"><strong>Class Show Bravo</strong></p>
+          <p class="show-details">
+            Monday, April 27 at 8:30 PM<br />
+            Go Comedy! Improv Theater, Ferndale
+          </p>
+          <a
+            class="show-button"
+            href="https://app.gopassage.com/events/class-show-bravo/event_times/1781429"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            See April 27th show details
+          </a>
+        </div>
+      </div>
+    </section>
 
     <section class="card troupe-photo">
       <h2>Our Troupe</h2>
@@ -81,6 +80,54 @@
           Mooth Terry on the loose
         </figcaption>
       </figure>
+    </section>
+
+    <section class="card testimonials">
+      <div class="testimonials-header">
+        <div>
+          <p class="eyebrow">Very official audience research</p>
+          <h2>What our patrons are saying about us…</h2>
+        </div>
+
+        <div class="carousel-buttons" aria-label="Testimonial navigation">
+          <button class="carousel-button" type="button" aria-label="Previous testimonial" data-carousel-prev>
+            ‹
+          </button>
+          <button class="carousel-button" type="button" aria-label="Next testimonial" data-carousel-next>
+            ›
+          </button>
+        </div>
+      </div>
+
+      <div class="testimonial-carousel" data-carousel>
+        <article class="testimonial-slide">
+          <blockquote>
+            "Hands down the better group. They were funnier and never dropped the F bomb."
+          </blockquote>
+          <p class="testimonial-name">— Grandma</p>
+        </article>
+
+        <article class="testimonial-slide">
+          <blockquote>
+            "I don't know how they remembered all those lines. Then someone told me they didn't."
+          </blockquote>
+          <p class="testimonial-name">— Aunt Linda</p>
+        </article>
+
+        <article class="testimonial-slide">
+          <blockquote>
+           "I don’t know who Harold is, but I support the arts."
+          </blockquote>
+          <p class="testimonial-name">Tony Oldman</p>
+        </article>
+
+        <article class="testimonial-slide">
+          <blockquote>
+           “I would watch these people pretend to be anything.”
+          </blockquote>
+          <p class="testimonial-name">— Ms. T</p>
+        </article>
+      </div>
     </section>
 
     <section class="card contact-card">
@@ -94,14 +141,35 @@
         ronald.fondecent@moothterry.org
       </a>
     </section>
-    
   </main>
 
   <footer class="footer">
     <p>Mooth Terry — proudly making things up in public.</p>
-      <div class="container">
-      <p>© 2026 Mooth Terry</p>
-      </div>
+    <p>© 2026 Mooth Terry</p>
   </footer>
+
+  <script>
+    const carousel = document.querySelector("[data-carousel]");
+    const prevButton = document.querySelector("[data-carousel-prev]");
+    const nextButton = document.querySelector("[data-carousel-next]");
+
+    if (carousel && prevButton && nextButton) {
+      const scrollAmount = () => carousel.querySelector(".testimonial-slide").offsetWidth + 16;
+
+      prevButton.addEventListener("click", () => {
+        carousel.scrollBy({
+          left: -scrollAmount(),
+          behavior: "smooth"
+        });
+      });
+
+      nextButton.addEventListener("click", () => {
+        carousel.scrollBy({
+          left: scrollAmount(),
+          behavior: "smooth"
+        });
+      });
+    }
+  </script>
 </body>
 </html>
