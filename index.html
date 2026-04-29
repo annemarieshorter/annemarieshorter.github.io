@@ -83,15 +83,55 @@
       </div>
     </section>
 
-    <section class="card troupe-photo">
-      <h2>Our Troupe</h2>
-      <figure class="stage-photo">
-        <img src="images/improv-show-photo.jpg" alt="Moose Terry performing on stage at Go Comedy" />
-        <figcaption>
-          Moose Terry on the loose.
-        </figcaption>
-      </figure>
-    </section>
+    <section class="card photo-carousel-section">
+  <div class="photo-carousel-header">
+    <div>
+      <p class="section-kicker">Photo evidence</p>
+      <h2>Moose Terry in the wild</h2>
+    </div>
+
+    <div class="photo-carousel-buttons" aria-label="Photo carousel navigation">
+      <button class="photo-carousel-button" type="button" aria-label="Previous photo" data-photo-prev>
+        ‹
+      </button>
+      <button class="photo-carousel-button" type="button" aria-label="Next photo" data-photo-next>
+        ›
+      </button>
+    </div>
+  </div>
+
+  <div class="photo-carousel-shell" data-photo-carousel>
+    <div class="photo-carousel-viewport" data-photo-viewport>
+      <div class="photo-carousel-track" data-photo-track>
+        <figure class="photo-slide">
+          <img src="images/bunny.heic" alt="Moose Terry group photo - bunny" />
+        </figure>
+
+        <figure class="photo-slide">
+          <img src="images/green_room.jpg" alt="Moose Terry in the green room" />
+        </figure>
+
+        <figure class="photo-slide">
+          <img src="images/improv-show-photo.jpg" alt="Moose Terry performing on stage" />
+        </figure>
+
+        <figure class="photo-slide">
+          <img src="images/intro_graduation.JPG" alt="Moose Terry graduation photo" />
+        </figure>
+
+        <figure class="photo-slide">
+          <img src="images/kevin_tall_king.jpg" alt="Kevin tall king photo" />
+        </figure>
+
+        <figure class="photo-slide">
+          <img src="images/tough.heic" alt="Moose Terry tough photo" />
+        </figure>
+      </div>
+    </div>
+
+    <div class="antler-indicators" data-photo-dots aria-label="Photo carousel tracker"></div>
+  </div>
+</section>
 
     <section class="card testimonials">
       <div class="testimonials-header">
