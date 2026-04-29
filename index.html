@@ -205,28 +205,135 @@
     <p>© 2026 Moose Terry</p>
   </footer>
 
-  <script>
-    const carousel = document.querySelector("[data-carousel]");
-    const prevButton = document.querySelector("[data-carousel-prev]");
-    const nextButton = document.querySelector("[data-carousel-next]");
+<script>
+  /* Testimonials carousel */
+  const testimonialCarousel = document.querySelector("[data-carousel]");
+  const prevButton = document.querySelector("[data-carousel-prev]");
+  const nextButton = document.querySelector("[data-carousel-next]");
 
-    if (carousel && prevButton && nextButton) {
-      const scrollAmount = () => carousel.querySelector(".testimonial-slide").offsetWidth + 16;
+  if (testimonialCarousel && prevButton && nextButton) {
+    const scrollAmount = () => {
+      const slide = testimonialCarousel.querySelector(".testimonial-slide");
+      return slide ? slide.offsetWidth + 16 : 0;
+    };
 
-      prevButton.addEventListener("click", () => {
-        carousel.scrollBy({
-          left: -scrollAmount(),
-          behavior: "smooth"
-        });
+    prevButton.addEventListener("click", () => {
+      testimonialCarousel.scrollBy({
+        left: -scrollAmount(),
+        behavior: "smooth"
+      });
+    });
+
+    nextButton.addEventListener("click", () => {
+      testimonialCarousel.scrollBy({
+        left: scrollAmount(),
+        behavior: "smooth"
+      });
+    });
+  }
+
+  /* Photo carousel */
+  const photoCarousel = document.querySelector("[data-photo-carousel]");
+
+  if (photoCarousel) {
+    const viewport = photoCarousel.querySelector("[data-photo-viewport]");
+    const track = photoCarousel.querySelector("[data-photo-track]");
+    const slides = Array.from(track.querySelectorAll(".photo-slide"));
+    const prev = document.querySelector("[data-photo-prev]");
+    const next = document.querySelector("[data-photo-next]");
+    const dotsContainer = photoCarousel.querySelector("[data-photo-dots]");
+
+    let currentIndex = 0;
+    let autoAdvance;
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "antler-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Go to photo ${index + 1}`);
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updatePhotoCarousel();
+        restartAutoAdvance();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.querySelectorAll(".antler-dot"));
+
+    function getGap() {
+      const styles = window.getComputedStyle(track);
+      return parseFloat(styles.gap) || 16;
+    }
+
+    function updatePhotoCarousel(animate = true) {
+      if (!slides.length) return;
+
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      const viewportWidth = viewport.getBoundingClientRect().width;
+      const gap = getGap();
+      const sidePeekOffset = (viewportWidth - slideWidth) / 2;
+      const translateX = sidePeekOffset - (currentIndex * (slideWidth + gap));
+
+      track.style.transition = animate ? "transform 0.6s ease" : "none";
+      track.style.transform = `translateX(${translateX}px)`;
+
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("is-active", index === currentIndex);
       });
 
-      nextButton.addEventListener("click", () => {
-        carousel.scrollBy({
-          left: scrollAmount(),
-          behavior: "smooth"
-        });
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("is-active", index === currentIndex);
       });
     }
-  </script>
+
+    function goToNext() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updatePhotoCarousel();
+    }
+
+    function goToPrev() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updatePhotoCarousel();
+    }
+
+    function startAutoAdvance() {
+      autoAdvance = setInterval(goToNext, 4000);
+    }
+
+    function stopAutoAdvance() {
+      clearInterval(autoAdvance);
+    }
+
+    function restartAutoAdvance() {
+      stopAutoAdvance();
+      startAutoAdvance();
+    }
+
+    if (next) {
+      next.addEventListener("click", () => {
+        goToNext();
+        restartAutoAdvance();
+      });
+    }
+
+    if (prev) {
+      prev.addEventListener("click", () => {
+        goToPrev();
+        restartAutoAdvance();
+      });
+    }
+
+    photoCarousel.addEventListener("mouseenter", stopAutoAdvance);
+    photoCarousel.addEventListener("mouseleave", startAutoAdvance);
+    photoCarousel.addEventListener("focusin", stopAutoAdvance);
+    photoCarousel.addEventListener("focusout", startAutoAdvance);
+
+    window.addEventListener("resize", () => updatePhotoCarousel(false));
+
+    updatePhotoCarousel(false);
+    startAutoAdvance();
+  }
+</script>
 </body>
 </html>
