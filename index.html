@@ -387,14 +387,47 @@
     }
 
     photoCarousel.addEventListener("mouseenter", stopAutoAdvance);
-    photoCarousel.addEventListener("mouseleave", startAutoAdvance);
-    photoCarousel.addEventListener("focusin", stopAutoAdvance);
-    photoCarousel.addEventListener("focusout", startAutoAdvance);
+photoCarousel.addEventListener("mouseleave", startAutoAdvance);
+photoCarousel.addEventListener("focusin", stopAutoAdvance);
+photoCarousel.addEventListener("focusout", startAutoAdvance);
 
-    window.addEventListener("resize", () => updatePhotoCarousel(false));
+/* Mobile swipe support */
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
 
-    updatePhotoCarousel(false);
-    startAutoAdvance();
+viewport.addEventListener("touchstart", (event) => {
+  touchStartX = event.changedTouches[0].screenX;
+  touchStartY = event.changedTouches[0].screenY;
+  stopAutoAdvance();
+}, { passive: true });
+
+viewport.addEventListener("touchend", (event) => {
+  touchEndX = event.changedTouches[0].screenX;
+  touchEndY = event.changedTouches[0].screenY;
+
+  const swipeDistanceX = touchEndX - touchStartX;
+  const swipeDistanceY = touchEndY - touchStartY;
+
+  const isHorizontalSwipe = Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY);
+  const isBigEnoughSwipe = Math.abs(swipeDistanceX) > 45;
+
+  if (isHorizontalSwipe && isBigEnoughSwipe) {
+    if (swipeDistanceX < 0) {
+      goToNext();
+    } else {
+      goToPrev();
+    }
+  }
+
+  restartAutoAdvance();
+}, { passive: true });
+
+window.addEventListener("resize", () => updatePhotoCarousel(false));
+
+updatePhotoCarousel(false);
+startAutoAdvance();
   }
 </script>
 </body>
